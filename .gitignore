@@ -1,0 +1,19 @@
+# Sources téléchargées et calculs intermédiaires (environ 1 Go) : recréés par chaine/lancer.py
+donnees/
+
+# Anciennes versions des scripts et des résultats (octobre 2026)
+anciennes_versions/
+chaine/anciennes_versions/
+resultats/anciennes_versions/
+
+# Couche QGIS (31 Mo), ancienne carte HTML et anciens LISEZMOI, remplacés par ce README
+resultats/ergo_pediatrie.gpkg
+resultats/carte_interactive/carte_ergo.html
+resultats/LISEZMOI.txt
+LISEZMOI.txt
+
+# Fichiers internes de R, RStudio et Python
+.Rproj.user/
+.Rhistory
+.RData
+__pycache__/
