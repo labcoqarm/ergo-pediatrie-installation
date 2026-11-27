@@ -3,7 +3,8 @@
 library(shiny)
 library(leaflet)
 
-E <- charger("resultats/carte_interactive")
+# la version web lit echelles.rds, préparé par outils/publier_site.R
+E <- if (file.exists("echelles.rds")) readRDS("echelles.rds") else charger("resultats/carte_interactive")
 IDF <- c("75", "77", "78", "91", "92", "93", "94", "95")
 PALETTE <- c("#FFFFCC", "#C7E9B4", "#7FCDBB", "#41B6C4", "#2C7FB8", "#253494")
 GRIS <- "#D9D9D9"
@@ -207,7 +208,7 @@ server <- function(input, output, session) {
       leafletProxy("carte") |>
         clearGroup("territoires") |>
         clearGroup("contours") |>
-        addPolygons(data = g$data, layerId = g$ids, group = "territoires", fillColor = couleurs(), fillOpacity = as.numeric(input$opacite), color = "#ffffff", weight = if (e == "com") 0.2 else 0.6, opacity = 0.8, label = g$noms) |>
+        addPolygons(data = g$poly, layerId = g$ids, group = "territoires", fillColor = couleurs(), fillOpacity = as.numeric(input$opacite), color = "#ffffff", weight = if (e == "com") 0.2 else 0.6, opacity = 0.8, label = g$noms) |>
         addPolylines(data = contours_dep, group = "contours", color = "#333", weight = 0.8, opacity = 0.9, options = pathOptions(interactive = FALSE))
     })
   })

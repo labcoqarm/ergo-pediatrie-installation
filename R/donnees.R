@@ -14,6 +14,9 @@ lire_couche <- function(f) {
   g
 }
 
+# polygones convertis une seule fois pour leaflet : sans ça, le navigateur refait la conversion des 35 000 communes à chaque affichage
+registerS3method("polygonData", "polygones_prets", function(obj) { class(obj) <- NULL; obj }, envir = asNamespace("leaflet"))
+
 # clé, libellé, sens (1 : plus haut = plus favorable, -1 : plus bas = plus favorable, 0 : ni l'un ni l'autre), explication
 indic <- function(...) {
   x <- list(...)
@@ -72,6 +75,7 @@ charger <- function(dossier) {
     if (!file.exists(f)) stop("Fichier absent : ", f)
     g <- lire_couche(f)
     ECHELLES[[e]]$data <- g
+    ECHELLES[[e]]$poly <- structure(leaflet:::polygonData(g), class = "polygones_prets")
     ECHELLES[[e]]$ids <- as.character(g[[ECHELLES[[e]]$id]])
     ECHELLES[[e]]$noms <- paste0(g[[ECHELLES[[e]]$libelle]], " (", g$dep, ")")
   }

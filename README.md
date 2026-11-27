@@ -2,6 +2,8 @@
 
 Où un ergothérapeute qui veut ouvrir un cabinet libéral pour enfants a-t-il le plus de chances de trouver une patientèle, aujourd'hui et d'ici 2035 ? Ce projet répond à l'échelle des départements, des intercommunalités et des communes de France métropolitaine, à partir de données publiques. Les résultats se consultent dans une application R Shiny.
 
+**[Ouvrir l'application en ligne](https://labcoqarm.github.io/ergo-pediatrie-installation/)**
+
 Projet personnel, octobre-novembre 2026.
 
 ![Score départemental](figures/score_departements.png)
@@ -17,6 +19,8 @@ Projet personnel, octobre-novembre 2026.
 ## L'application
 
 Elle montre chaque indicateur sur trois échelles (départements, intercommunalités, communes), avec un classement, une recherche, un filtre « hors Île-de-France » et, au clic sur un territoire, sa projection du besoin et de l'offre de 2026 à 2035. Pour une commune, la carte dessine aussi sa zone de chalandise.
+
+La [version en ligne](https://labcoqarm.github.io/ergo-pediatrie-installation/) tourne entièrement dans le navigateur (shinylive) : R et les données se téléchargent à la première ouverture, ce qui prend une à deux minutes. Pour la lancer sur son poste :
 
 ```r
 install.packages(c("shiny", "leaflet", "sf", "jsonlite"))
@@ -75,7 +79,8 @@ Premier lancement : environ 1 Go à télécharger et 5 à 10 minutes de calcul. 
 - `chaine/e5_export.py` : fichiers de l'application
 - `chaine/lancer.py` : toute la chaîne dans l'ordre
 - `app.R`, `R/donnees.R` : application Shiny
-- `R/figure_readme.R` : carte de ce README
+- `outils/figure_readme.R` : carte de ce README
+- `outils/publier_site.R` : version web de l'application dans `docs/`, publiée par GitHub Pages
 - `resultats/` : classements et projections en CSV, données de l'application
 
 Armand Lecoq, novembre 2026.
